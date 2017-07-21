@@ -13,12 +13,13 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 from telegram import Bot
-from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Filters
+from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Filters, InlineQueryHandler
 from credentials import TOKEN
-from handlers.handlers import echo, error, help, start
+from handlers.handlers import echo, error, help, start, parseInlineQuery
 
 dispatcher = None
 bot = Bot(TOKEN)
+
 
 def setup():
     '''GAE DISPATCHER SETUP'''
@@ -29,14 +30,16 @@ def setup():
     dispatcher = Dispatcher(bot=bot, update_queue=None, workers=0)
 
     # ---Register handlers here---
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("help", help))
-    dispatcher.add_handler(MessageHandler([Filters.text], echo))
+    dispatcher.add_handler(InlineQueryHandler(parseInlineQuery))
     dispatcher.add_error_handler(error)
 
     return dispatcher
+
 
 def webhook(update):
     global dispatcher
     # Manually get updates and pass to dispatcher
     dispatcher.process_update(update)
+
+
+setup()
