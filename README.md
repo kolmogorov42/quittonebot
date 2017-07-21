@@ -7,7 +7,7 @@
 
 To quote a long-time IRC user:
 
-> Since Telegram took quitting away, we can't even say goodbye properly.
+> Since Telegram took the act of quitting away, we can't even say goodbye properly.
 
 This bot, therefore, is being developed to fulfill a long-standing need.
 
@@ -19,7 +19,7 @@ Clone or download this repository, and then follow the [instructions](https://gi
 
 ### USAGE
 
-If you just want to use it, just type `@quittonebot` followed by your message in any Telegram chat window and click on the result.
+If you just want to use it, first say goodbye to your friends properly, then type `@quittonebot` followed by your message in any Telegram chat window and click on the result.
 
 Enjoy.
 
