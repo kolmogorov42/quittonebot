@@ -25,13 +25,12 @@ def parseInlineQuery(bot, update):
     user = update.inline_query.from_user
     logger.info(user)
 
-    try:
+    if user.username:
         username = user.username
-    except KeyError:
-        if 'last_name' in user:
-            username = "%s %s" % (user.first_name, user.last_name)
-        else:
-            username = user.first_name
+    elif user.last_name:
+        username = "%s %s" % (user.first_name, user.last_name)
+    else:
+        username = user.first_name
 
     logger.info('username found as %s' % username)
 
